@@ -1,14 +1,31 @@
-const http = require('http');
+/* Include the static file webserver library */
+var static = require('node-static');
 
-const hostname = '127.0.0.1';
-const port = 3000;
+/* Include the http server library */
+var http = require('http');
 
-const server = http.createServer((req, res) => {
-	res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, World!\n');
-});
+/* Assume that we are running on Heroku */
+var port = process.env.PORT;
+var directory = __dirname + '/public';
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+/* If we aren't on Heroku, then we need to readjust the port and directory information and we know that because port won't be set */
+if(typeof port == 'undefined' || !port) {
+	directory = "./public";
+	port = 8080;
+}
+
+/* Setup a static web-server that will deliver files from the file system */
+var file = new static.Server(directory);
+
+/* Construct an http server that gets files from the file server */
+var app = http.createServer(
+	function(request, response) {
+		request.addListener('end',
+			function(){
+				file.serve(request, response);
+			})
+		.resume();
+	}
+).listen(port);
+
+console.log('The server is running');
