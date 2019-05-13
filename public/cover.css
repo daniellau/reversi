@@ -43,18 +43,9 @@ body {
 }
 
 .cover-container {
-  background: url('./images/bg.png') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 100%;
-  max-width: 678px;
+  max-width: 42em;
 }
 
-.secondary-buttons {
-  color: #FCCF44;
-}
 
 /*
  * Header
@@ -109,7 +100,13 @@ body {
   padding: .75rem 1.25rem;
   font-weight: 700;
 }
-
+.cover-container {
+  background: url('./images/bg.png') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 /*
  * Footer
