@@ -6,7 +6,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/examples/cover/cover.css">
+    <link rel="stylesheet" href="cover.css">
 
     <style>
       #username {
@@ -32,11 +32,11 @@
       <main role="main" class="inner cover">
         <h1 class="cover-heading">Enter Your User Name</h1>
         <div class="row">
-          <div class="col">
+          <div class="col single-line-submit">
               <form onsubmit='submitForm(); return false;' class='form-inline'>
                 <div class='form-group d-flex h-100 p-3 mx-auto'>
                   <label for='username' class='col-form-label sr-only'>Enter your user name</label>
-                  <input class='form-control' type='text' value='' id='username' placeholder='Enter your user name'/>
+                  <input class='form-control' type='text' value='' id='username' placeholder='Enter your user name' autocomplete='off'/>
                   <button type='submit' id='username-button' class='btn btn-default btn-primary'>Submit</button>
                 </div>
               </form>
