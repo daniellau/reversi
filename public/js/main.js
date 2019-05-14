@@ -39,6 +39,7 @@ socket.on('send_message_response', function(payload) {
     alert(payload.message);
     return;
   }
+  $('#send_message_holder').val('');
   $('#messages').append('<p><strong>' + payload.username + ' says:</strong> ' + payload.message + '</p>');
 })
 
