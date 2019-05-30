@@ -21,6 +21,10 @@ td.hovered_over:hover {
   background-size: 100% 100%;
 }
 
+#my_color {
+  padding-top: 1rem;
+}
+
 #quit .btn-danger {
   border-radius: 0 0 0.25rem 0.25rem;
 }

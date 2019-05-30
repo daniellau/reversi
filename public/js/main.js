@@ -274,6 +274,7 @@ var old_board = [
                     ];
 
 var my_color = ' ';
+var my_animal = ' ';
 
 socket.on('game_update',function(payload){
   console.log('*** Client Log Message: \'game_update\' payload: '+ JSON.stringify(payload));
@@ -294,9 +295,11 @@ socket.on('game_update',function(payload){
   /* Update my color */
   if(socket.id == payload.game.player_white.socket){
     my_color = 'white';
+    my_animal = 'Panda';
   }
   else if(socket.id == payload.game.player_black.socket){
     my_color = 'black';
+    my_animal = 'Zebra';
   }
   else {
     /* Something weird is going on, like 3 people playing at once */
@@ -304,7 +307,7 @@ socket.on('game_update',function(payload){
     window.location.href = 'lobby.html?username'+username;
   };
 
-  $('#my_color').html('<h3 id="my_color">I am '+my_color+'</h3>');
+  $('#my_color').html('Team '+my_animal);
 
   /* Animate changes to the board */
   var blacksum = 0;
