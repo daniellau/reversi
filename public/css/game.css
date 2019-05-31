@@ -1,22 +1,22 @@
 body {
-  background-color: #0EC477;
+  background-color: #0EC477 !important;
 }
 
 table#game_board {
-  margin: 1rem auto;
+  margin: auto;
   border-style: solid;
-  border-width: 10px;
-  border-color: rgb(100,100,100);
+  border-width: 5px;
+  border-color: rgb(34,34,34);
 }
 
 table#game_board td {
   padding: 5px;
   border-style: solid;
   border-width: 1px;
-  border-color: rgb(50,50,50);
+  border-color: rgb(0,0,0);
 }
 
-td.hovered_over:hover {
+td.hovered_over {
   background: url('../images/hover.gif'), rgb(111,194,123);
   background-size: 100% 100%;
 }
@@ -27,4 +27,51 @@ td.hovered_over:hover {
 
 #quit .btn-danger {
   border-radius: 0 0 0.25rem 0.25rem;
+}
+
+#game-col {
+  margin-top: 1rem;
+}
+
+#elapsed {
+  margin-left: 1px;
+}
+
+#game_over a {
+  margin-bottom: 1rem;
+}
+
+h4.whose-turn {
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  padding: 2.3rem 0 0.5rem;
+  margin: 0.2rem 0;
+}
+
+h4.whose-turn span {
+  margin-left: -3px;
+}
+
+h4.black {
+  background-color: #000;
+  color: #fff;
+}
+
+h4.white {
+  background-color: #fff;
+  color: #000;
+}
+
+h4.whose-turn:before {
+  transform: scale(.5);
+  position: absolute;
+  top: -0.6rem;
+}
+
+h4.black:before {
+  content: url('../images/zebra.png');
+}
+
+h4.white:before {
+  content: url('../images/panda.png');
 }

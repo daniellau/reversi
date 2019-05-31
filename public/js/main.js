@@ -275,6 +275,7 @@ var old_board = [
 
 var my_color = ' ';
 var my_animal = ' ';
+var interval_timer;
 
 socket.on('game_update',function(payload){
   console.log('*** Client Log Message: \'game_update\' payload: '+ JSON.stringify(payload));
@@ -307,7 +308,26 @@ socket.on('game_update',function(payload){
     window.location.href = 'lobby.html?username'+username;
   };
 
-  $('#my_color').html('Team '+my_animal);
+  $('#my_color').html('I\'m on Team '+my_animal);
+  $('#game-col').html('<h4 class="whose-turn '+payload.game.whose_turn+'"><span id="'+payload.game.whose_turn+'">\'s turn</h4>');
+  $('#black').prepend('zebra').append('<br/>Elapsed time: <span id="elapsed"></span>');
+  $('#white').prepend('panda').append('<br/>Elapsed time: <span id="elapsed"></span>');
+
+  clearInterval(interval_timer);
+  interval_timer = setInterval(function(last_time){
+    return function(){
+      // Do the work of updating the UI
+      var d = new Date();
+      var elapsedmilli = d.getTime() - last_time;
+      var minutes = Math.floor(elapsedmilli / (60 * 1000));
+      var seconds = Math.floor((elapsedmilli % (60 * 1000)) / 1000);
+      if(seconds < 10){
+        $('#elapsed').html(minutes+':0'+seconds);
+      } else {
+        $('#elapsed').html(minutes+':'+seconds);
+      }
+    }}(payload.game.last_move_time)
+    , 1000);
 
   /* Animate changes to the board */
   var blacksum = 0;
@@ -353,9 +373,13 @@ socket.on('game_update',function(payload){
         else {
           $('#'+row+'_'+column).html('<img src="images/error.gif" alt="error"/>');
         }
-        /* Set up interactivity */
-        $('#'+row+'_'+column).off('click');
-        if(board[row][column] == ' '){
+      }
+      /* Set up interactivity */
+      $('#'+row+'_'+column).off('click');
+      $('#'+row+'_'+column).removeClass('hovered_over');
+
+      if(payload.game.whose_turn === my_color){
+        if(payload.game.legal_moves[row][column] === my_color.substr(0,1)){
           $('#'+row+'_'+column).addClass('hovered_over');
           $('#'+row+'_'+column).click(function(r,c){
             return function(){
@@ -367,9 +391,6 @@ socket.on('game_update',function(payload){
               socket.emit('play_token',payload);
             };
           }(row,column));
-        }
-        else {  
-          $('#'+row+'_'+column).removeClass('hovered_over');
         }
       }
     }
@@ -398,6 +419,7 @@ socket.on('game_over', function(payload){
   }
 
   /* Jump to a new page */
+  $('#game-col').remove();
   $('#game_over').html('<h2>Game Over</h2><h3>'+payload.who_won+' won!</h3>');
   $('#game_over').append('<a href="lobby.html?username='+username+'" class="btn btn-success btn-lg" role="button" aria-pressed="true">Return to the lobby</a><br/>');
 });
