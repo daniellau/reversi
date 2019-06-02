@@ -342,7 +342,7 @@ socket.on('game_update',function(payload){
         whitesum++;
       }
       /* If a board space has changed */
-      if(old_board[row][column] != board [row][column]){
+      if(old_board[row][column] != board[row][column]){
         if(old_board[row][column] == '?' && board[row][column] == ' '){
           $('#'+row+'_'+column).html('<img src="images/empty.gif" class="img-fluid" alt="empty square"/>');
         }
@@ -397,6 +397,7 @@ socket.on('game_update',function(payload){
   }
   $('#blacksum').html(blacksum);
   $('#whitesum').html(whitesum);
+  $('.modal-footer').html('<a href="lobby.html?username='+username+'" class="btn btn-primary btn-default" role="button" aria-pressed="true">Return to the lobby</a>');
   old_board = board;
 });
 
@@ -420,6 +421,9 @@ socket.on('game_over', function(payload){
 
   /* Jump to a new page */
   $('#game-col').remove();
+  $('#winnerModal').modal('show');
+  $('#winnerModal .modal-body').html('<img src="/images/winner.gif" class="image-fluid"/><h3>Congratulations '+payload.who_won+'!</h3><img src="/images/'+payload.who_won+'.gif" class="image-fluid winning-animal"/><img src="/images/'+payload.who_won+'.gif" class="image-fluid winning-animal"/><img src="/images/'+payload.who_won+'.gif" class="image-fluid winning-animal"/>');
+  $('.modal-footer').html('<a href="lobby.html?username='+username+'" class="btn btn-success btn-lg" role="button" aria-pressed="true">Return to the lobby</a>');
   $('#game_over').html('<h2>Game Over</h2><h3>'+payload.who_won+' won!</h3>');
   $('#game_over').append('<a href="lobby.html?username='+username+'" class="btn btn-success btn-lg" role="button" aria-pressed="true">Return to the lobby</a><br/>');
 });

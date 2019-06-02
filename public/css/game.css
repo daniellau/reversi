@@ -1,5 +1,5 @@
 body {
-  background-color: #0EC477 !important;
+  background-color: #0EC477;
 }
 
 table#game_board {
@@ -74,4 +74,77 @@ h4.black:before {
 
 h4.white:before {
   content: url('../images/panda.png');
+}
+
+#winnerModal h5 {
+  color: #333333;
+}
+
+#winnerModal img {
+  max-width: 250px;
+}
+
+#winnerModal h2 {
+  color: #333333;
+}
+
+#winnerModal h3 {
+  color: #333333;
+  -webkit-animation-name: winner; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+  animation-name: winner;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes winner {
+  0%   {color:#0E4CC4;}
+  25%  {color:#0E82CF;}
+  50%  {color:#17A2B8;}
+  75%  {color:#0ECFB4;}
+  100% {color:#0EC477;}
+}
+
+/* Standard syntax */
+@keyframes winner {
+  0%   {color:#0E4CC4;}
+  25%  {color:#0E82CF;}
+  50%  {color:#17A2B8;}
+  75%  {color:#0ECFB4;}
+  100% {color:#0EC477;}
+}
+
+#winnerModal .winning-animal {
+  -webkit-animation-name: animal; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+  animation-name: animal;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes animal {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animal {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #game-col {
+    min-width: 640px;
+  }
 }
