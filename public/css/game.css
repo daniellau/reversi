@@ -116,11 +116,22 @@ h4.white:before {
   100% {color:#0EC477;}
 }
 
-#winnerModal .winning-animal {
+#winnerModal .winning-animal svg {
+  max-width: 64px;
+  max-height: 64px;
   -webkit-animation-name: animal; /* Safari 4.0 - 8.0 */
   -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
   -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
   animation-name: animal;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+#winnerModal .winning-animal .animal-color {
+  -webkit-animation-name: animalcolor; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+  animation-name: animalcolor;
   animation-duration: 4s;
   animation-iteration-count: infinite;
 }
@@ -131,7 +142,15 @@ h4.white:before {
   }
   to {
     transform: rotate(360deg);
-  }
+  } 
+}
+
+@-webkit-keyframes animalcolor {
+  0%   {fill:#0E4CC4;}
+  25%  {fill:#0E82CF;}
+  50%  {fill:#17A2B8;}
+  75%  {fill:#0ECFB4;}
+  100% {fill:#0EC477;}
 }
 
 @keyframes animal {
@@ -141,6 +160,14 @@ h4.white:before {
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes animalcolor {
+  0%   {fill:#0E4CC4;}
+  25%  {fill:#0E82CF;}
+  50%  {fill:#17A2B8;}
+  75%  {fill:#0ECFB4;}
+  100% {fill:#0EC477;}
 }
 
 @media only screen and (min-width: 1200px) {
