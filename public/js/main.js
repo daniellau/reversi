@@ -430,7 +430,7 @@ socket.on('game_over', function(payload){
   } else if (payload.who_won === 'Zebra'){
     $('#winnerModal .modal-body').html('<img src="/images/winner.gif" class="image-fluid"/><h3>Congratulations '+payload.who_won+'!</h3>'+zebra+zebra+zebra+zebra);
   } else {
-    $('#winnerModal .modal-body').html('<h3>An error occurred. Please return to lobby.</h3>')
+    $('#winnerModal .modal-body').html('<img src="/images/winner.gif" class="image-fluid"/><h3>Tie Game!</h3><h4>Here\'s your participation trophy.</h4>'+panda+zebra+panda+zebra);
   }
   $('.modal-footer').html('<a href="lobby.html?username='+username+'" class="btn btn-success btn-lg" role="button" aria-pressed="true">Return to the lobby</a>');
   $('#game_over').html('<h2>Game Over</h2><h3>'+payload.who_won+' won!</h3>');
