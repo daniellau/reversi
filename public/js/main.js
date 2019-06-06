@@ -305,7 +305,7 @@ socket.on('game_update',function(payload){
   else {
     /* Something weird is going on, like 3 people playing at once */
     /* Send client back to the lobby */
-    window.location.href = 'lobby.html?username'+username;
+    window.location.href = 'lobby.html?username='+username;
   };
 
   $('#my_color').html('I\'m on Team '+my_animal);
